@@ -17,7 +17,7 @@ $ipList = @()
 # Generate IP Addresses to $ipList
 # Quick and dirty IP range calculations, leave off last octect
 # (or you know, write a proper function or just replace $ipList with an actual array of IP Addresses
-$ipRange = "172.18.23."#, "172.18.32.", "172.18.42.", "172.18.52.", "172.18.25.", "172.18.49."
+$ipRange = "172.18.22."#, "172.18.32.", "172.18.42.", "172.18.52.", "172.18.25.", "172.18.49."
 ForEach ($range in $ipRange) {
 $global:ipList += 1..254 | ForEach-Object { "$range$_"}
 }
@@ -77,6 +77,7 @@ Write-Host "Checking $phoneIP"
  $global:phoneOutput += New-Object psobject -Property @{
  ipAddr=$phoneIP;
  phoneDN=$docDevInfo.DeviceInformation.phoneDN;
+ SerialNumber=$docDevInfo.DeviceInformation.serialNumber;
  HostName=$docDevInfo.DeviceInformation.HostName;
  versionID=$docDevInfo.DeviceInformation.versionID;
  AltTFTP=$docDevNetConfig.NetworkConfiguration.AltTFTP;
@@ -100,6 +101,6 @@ Function Get-PhoneList() {
 
 Get-PhoneList
 
-$phoneOutput | Select-Object ipAddr, phoneDN, HostName, AltTFTP, TFTPServer1, TFTPServer2, versionID | Export-Csv -Path $home\Desktop\phone.csv -NoTypeInformation
+$phoneOutput | Select-Object ipAddr, phoneDN, SerialNumber, HostName, AltTFTP, TFTPServer1, TFTPServer2, versionID | Export-Csv -Path $home\Desktop\phone.csv -NoTypeInformation
 
 Invoke-Item $home\Desktop\phone.csv
