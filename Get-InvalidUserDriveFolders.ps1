@@ -10,7 +10,7 @@
                 foreach ($folder in (Get-ChildItem -Directory "$share")){
                     $userExists = $null
                     # Remove: "| ? { $_.Enabled }" from the below to look at Enabled & Disabled accounts
-                    try { $userExists = Get-ADUser $folder.Name | ? { $_.Enabled } } catch {}
+                    try { $userExists = Get-ADUser $folder.Name -Filter {Enabled -eq $true} } } catch {}
                         If ($userExists -eq $null){
                             $arrInvalidFolder.Add($folder)
                             try {$size = (Get-ChildItem -Recurse $folder.FullName -ErrorAction Stop | Measure-Object -property length -sum -ErrorAction SilentlyContinue)
