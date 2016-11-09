@@ -21,7 +21,7 @@ function Display-Printers {
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Title="[UserLog Explorer]" Height="350" Width="450" MinHeight="350" MinWidth="400" ResizeMode="CanResizeWithGrip">
+        Title="[Printer Explorer]" Height="350" Width="450" MinHeight="350" MinWidth="400" ResizeMode="CanResizeWithGrip">
     <Grid>
         <Button Name="button" Content="[ Refresh ]" Margin="10,10,10,0" VerticalAlignment="Top" Height="25"/>
         <DataGrid Name="dataGrid" Margin="10,40,10,10" IsReadOnly="True" SelectionMode="Single" SelectionUnit="Cell">
