@@ -13,7 +13,7 @@ $exCAS = Read-Host "Exchange CAS Name"
 [void][System.Windows.Forms.Application]::EnableVisualStyles();
 $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri http://$exCAS/PowerShell/ -Authentication Kerberos
 Import-PSSession $session -AllowClobber | Out-Null
-Add-PSSnapin microsoft.exchange*
+#Add-PSSnapin microsoft.exchange*
 
 # User Functions
 function Add-Node ($Nodes, $Path) { # Add \ Separated List To TreeView Nodes

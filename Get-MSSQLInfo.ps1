@@ -166,9 +166,9 @@ EJLsxb3MKygS4Np+fDslis749lU9fk0LWKfy/H9Nuv8BIlK8OHoiAAA=#>
 		
 	}
 	$buttonConnect_Click = {
-		while ($sqlsvr -eq $null -or $sqlsvr -eq "")
+		while ($sqlsvr -eq $null)
 		{
-			$sqlsvr = [Microsoft.VisualBasic.Interaction]::InputBox("Enter SQL Server name", "SQL Server Prompt", "$global:srv")
+			$sqlsvr = [Microsoft.VisualBasic.Interaction]::InputBox("Enter SQL Server name", "SQL Server Prompt", "")
 		}
 		$global:srv = New-Object "Microsoft.SqlServer.Management.Smo.Server" $sqlsvr
 		If ($global:srv -ne $null) { Update-Status("Connected to SQL Server: $global:srv") }
@@ -389,18 +389,18 @@ EJLsxb3MKygS4Np+fDslis749lU9fk0LWKfy/H9Nuv8BIlK8OHoiAAA=#>
 	{ Update-Status("Scripting object: $sqlobj from $global:srv")
 		switch ($sqlobj)
 		{
-			"Backup Devices" { Append-Text($srv.BackupDevices | foreach {$_.Script() + "GO"}) }
-			"Databases" { Append-Text($srv.Databases | foreach { $_.Script() + "GO" }) }
-			"End Points" { Append-Text($srv.EndPoints | foreach { $_.Script() + "GO" }) }
+			"Backup Devices" { Append-Text($srv.BackupDevices | foreach {$_.Script() + "`r`nGO`r`n"}) }
+			"Databases" { Append-Text($srv.Databases | foreach { $_.Script() + "`r`nGO`r`n" }) }
+			"End Points" { Append-Text($srv.EndPoints | foreach { $_.Script() + "`r`nGO`r`n" }) }
 			"Error Logs" { Append-Text($srv.ReadErrorLog() | foreach { "$($_.LogDate) $($_.Text ) `n" }) }
-			"Linked Servers" { Append-Text($srv.LinkedServers | foreach { $_.Script() + "GO" }) }
-			"Logins" { Append-Text($srv.Logins | foreach { $_.Script() + "GO" }) }
-			"Roles" { Append-Text($srv.Roles | foreach { $_.Script() + "GO" }) }
-			"SQL Agent" { Append-Text($srv.JobServer | foreach { $_.Script() + "GO" }) }
-			"SQL Agent - Alerts" { Append-Text($srv.JobServer.Alerts | foreach { $_.Script() + "GO" }) }
-			"SQL Agent - Jobs" { Append-Text($srv.JobServer.Jobs | foreach { $_.Script() + "GO" }) }
-			"SQL Agent - Operators" { Append-Text($srv.JobServer.Operators | foreach { $_.Script() + "GO" }) }
-			"Triggers" { Append-Text($srv.JobServer.Trigger | foreach { $_.Script() + "GO" }) }
+			"Linked Servers" { Append-Text($srv.LinkedServers | foreach { $_.Script() + "`r`nGO`r`n" }) }
+			"Logins" { Append-Text($srv.Logins | foreach { $_.Script() + "`r`nGO`r`n" }) }
+			"Roles" { Append-Text($srv.Roles | foreach { $_.Script() + "`r`nGO`r`n" }) }
+			"SQL Agent" { Append-Text($srv.JobServer | foreach { $_.Script() + "`r`nGO`r`n" }) }
+			"SQL Agent - Alerts" { Append-Text($srv.JobServer.Alerts | foreach { $_.Script() + "`r`nGO`r`n" }) }
+			"SQL Agent - Jobs" { Append-Text($srv.JobServer.Jobs | foreach { $_.Script() + "`r`nGO`r`n" }) }
+			"SQL Agent - Operators" { Append-Text($srv.JobServer.Operators | foreach { $_.Script() + "`r`nGO`r`n" }) }
+			"Triggers" { Append-Text($srv.JobServer.Trigger | foreach { $_.Script() + "`r`nGO`r`n" }) }
 			default { "Do Nothing" }
 		}
 	
