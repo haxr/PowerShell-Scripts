@@ -1,0 +1,1 @@
+﻿71..89|%{if(!(ls "$([char]$_):" -ea 4)){@{([char]$_+":")=[Guid]::NewGuid()}.GetEnumerator()}}|sort value|select -exp name -f 1
