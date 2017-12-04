@@ -48,7 +48,7 @@ Get-MessageTrackingLog -Sender:$Recipient -Server "$server" -Start "$StartDate" 
 
 # Only select timestamp, sender, and subject
 $msgTrackLogs | Sort-Object -Property Timestamp `
-              | Select Timestamp,Sender,MessageSubject `
+              | Select Timestamp,Sender,MessageSubject -Unique `
               | Export-Csv "$outputDir\$outputName" -NoTypeInformation
     } catch {}         
 if ((Read-Host "File output to: $outputDir\$outputName Open? (y/N)") -ieq "y") {

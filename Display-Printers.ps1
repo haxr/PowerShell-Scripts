@@ -6,7 +6,7 @@
 $printServer = Read-Host "Print Server"
 
 function Display-Printers {
-    $obj = Get-Printer -CimSession "$printServer" | select Name, PrinterStatus, JobCount, DriverName | ? { $_.Name -notlike '*XPS*' }
+    $obj = Get-Printer -CimSession "$printServer" | select Name, PrinterStatus, JobCount, DriverName | ? { $_.Name -notlike '*chi*' }
     $dataGrid.items.Clear()
     $obj | % { $dataGrid.items.Add($_) }
     $sort = New-Object System.ComponentModel.SortDescription("Name","Ascending")
