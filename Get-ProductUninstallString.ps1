@@ -20,7 +20,7 @@ $uninstallKeys = foreach ($key in (Get-ChildItem $UninstallKeys) ) {
 foreach ($key in $uninstallkeys) {
     $uninstallString = $key.UninstallString
         if ($uninstallString.StartsWith('MsiExec.exe')) {
-            #$uninstallString = $uninstallString.replace('/I','/X') + ' /qb- /quiet /passive /norestart'
+            $uninstallString = $uninstallString.replace('/I','/X') + ' /qb- /quiet /passive /norestart'
         } else {
             $uninstallString += ' /quiet /silent'
         }
