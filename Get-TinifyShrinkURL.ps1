@@ -11,6 +11,8 @@
    [String] URL of compressed file
 .NOTES
    Need to manually add API key
+.EDIT
+   Test
 #>
 function  Get-TinifyShrinkURL
 {
