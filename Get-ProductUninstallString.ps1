@@ -3,7 +3,7 @@ $UninstallKeys = @('HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall',
                     'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall',
                     'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall'
                     )
-$uninstallKeys = foreach ($key in (Get-ChildItem $UninstallKeys) ) {
+$results = foreach ($key in (Get-ChildItem $UninstallKeys) ) {
 
     foreach ($product in $productNames) {
         if ($key.GetValue("DisplayName") -like "$product") {
@@ -17,7 +17,7 @@ $uninstallKeys = foreach ($key in (Get-ChildItem $UninstallKeys) ) {
     }
 }
 
-foreach ($key in $uninstallkeys) {
+foreach ($key in $results) {
     $uninstallString = $key.UninstallString
         if ($uninstallString.StartsWith('MsiExec.exe')) {
             $uninstallString = $uninstallString.replace('/I','/X') + ' /qb- /quiet /passive /norestart'
