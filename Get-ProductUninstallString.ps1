@@ -24,7 +24,7 @@ foreach ($key in $results) {
         } else {
             $uninstallString += ' /quiet /silent'
         }
-    Write-Output "Uninstalling $($UninstallKeys.DisplayName)"
+    Write-Output "Uninstalling $($key.DisplayName)"
     # Uncomment to run the uninstall
     #& cmd /c $uninstallString
 }
