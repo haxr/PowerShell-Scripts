@@ -19,12 +19,18 @@ $results = foreach ($key in (Get-ChildItem $UninstallKeys) ) {
 
 foreach ($key in $results) {
     $uninstallString = $key.UninstallString
+    if ($uninstallString) {
         if ($uninstallString.StartsWith('MsiExec.exe')) {
             $uninstallString = $uninstallString.replace('/I','/X') + ' /qb- /quiet /passive /norestart'
         } else {
             $uninstallString += ' /quiet /silent'
+            $uninstallString = '"' + $uninstallString -replace "( \/.*)$","`"`$1"
         }
     Write-Output "Uninstalling $($key.DisplayName)"
+    Write-Output "$uninstallString"
     # Uncomment to run the uninstall
     #& cmd /c $uninstallString
+    } else {
+        Write-Host "No UninstallString found for $($key.DisplayName)"
+    }
 }
